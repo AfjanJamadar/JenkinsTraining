@@ -17,7 +17,7 @@ pipeline {
         stage('Checkout Source Code') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/AfjanJamadar/JenkinsTraining'
+                    url: 'https://github.com/AfjanJamadar/JenkinsTraining.git'
             }
         }
 
