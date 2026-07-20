@@ -48,22 +48,22 @@ pipeline {
 			    }
 			}
 			
-       stage('Deploy Application') {
-		    steps {
-		        bat '''
-		        @echo off
-		        echo Starting Spring Boot Application...
-		
-		        for %%f in (target\\*.jar) do (
-		            start /b "" java -jar "%%f"
-		        )
-		
-		        timeout /t 10 > nul
-		
-		        echo Application Started Successfully.
-		        '''
-		    }
-		}
+			stage('Deploy Application') {
+			    steps {
+			        bat '''
+			        @echo off
+			        echo Starting Spring Boot Application...
+			
+			        for %%f in (target\\*.jar) do (
+			            start "" /B java -jar "%%f" < nul > app.log 2>&1
+			        )
+			
+			        timeout /t 10 > nul
+			
+			        echo Application Started Successfully.
+			        '''
+			    }
+			}
 
     }
 
