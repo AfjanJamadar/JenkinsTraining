@@ -57,21 +57,21 @@ pipeline {
 			}	
 					
 			stage('Deploy Application') {
-			    steps {
-			        bat '''
-			        @echo off
-			        echo Starting Spring Boot Application...
-			
-			        for %%f in (target\\*.jar) do (
-			            start "" /B java -jar "%%f" < nul > app.log 2>&1
-			        )
-			
-			        timeout /t 10 > nul
-			
-			        echo Application Started Successfully.
-			        '''
-			    }
-			}
+            steps {
+                bat '''
+                @echo off
+                echo Starting Spring Boot Application...
+
+                powershell -Command "Start-Process java -ArgumentList '-jar','target\\products-crud-0.0.1-SNAPSHOT.jar' -WindowStyle Hidden"
+
+                timeout /t 10 > nul
+
+                echo Application Started Successfully.
+                exit /b 0
+                '''
+            }
+        }
+
 
     }
 
