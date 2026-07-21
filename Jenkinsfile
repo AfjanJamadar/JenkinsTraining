@@ -61,6 +61,8 @@ pipeline {
                 bat '''
                 @echo off
                 echo Starting Spring Boot Application...
+                
+                set JENKINS_NODE_COOKIE=dontKillMe
 
                 powershell -Command "Start-Process java -ArgumentList '-jar','target\\products-crud-0.0.1-SNAPSHOT.jar' -WindowStyle Hidden"
 
