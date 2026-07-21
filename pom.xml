@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.billdesk</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>deploy</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
+	<name>deploy</name>
 	<description/>
 	<url/>
 	<licenses>
