@@ -24,6 +24,20 @@ pipeline {
             steps {
                 git branch: 'main', url: 'https://github.com/AfjanJamadar/JenkinsTraining.git'            }
         }
+               
+               
+        stage('Stop Existing Application') {
+            steps {
+                bat '''
+                @echo off
+                for /f "tokens=5" %%a in ('netstat -ano ^| findstr :9091') do (
+                    echo Stopping existing application PID %%a...
+                    taskkill /PID %%a /F
+                )
+                exit /b 0
+                '''
+            }
+        }
 
         stage('Compile') {
             steps {
@@ -37,18 +51,7 @@ pipeline {
             }
         }
 
-        stage('Stop Existing Application') {
-            steps {
-                bat '''
-                @echo off
-                for /f "tokens=5" %%a in ('netstat -ano ^| findstr :9091') do (
-                    echo Stopping existing application PID %%a...
-                    taskkill /PID %%a /F
-                )
-                exit /b 0
-                '''
-            }
-        }
+
 
         stage('Deploy Application') {
     steps {
